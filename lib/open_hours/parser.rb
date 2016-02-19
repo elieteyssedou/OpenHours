@@ -28,8 +28,8 @@ module OpenHours
       format_output(output)
     end
 
-    def format_output(input)
-      {periods: {rules: [input], dates: "01/01:31/12"}}
+    def format_output(input, dates = "01/01:31/12")
+      {periods: {rules: [input], dates: dates}
     end
 
     def day_str_to_num(str)
