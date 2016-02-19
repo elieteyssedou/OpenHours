@@ -5,12 +5,11 @@ module OpenHours
     def initialize(data)
       @initial_data = data
       format = recognize_syntax(@initial_data)
-      parse(@initial_data, format)
-      @period = format
+      @period = parse(@initial_data, format)
     end
 
-    def self.parse(string_to_parse, format = :undefined)
-      self.send(format).call(string_to_parse) unless format == :undefined
+    def parse(string_to_parse, format = :undefined)
+      self.send(format, string_to_parse) unless format == :undefined
     end
 
     protected
@@ -21,7 +20,7 @@ module OpenHours
       end
     end
 
-    def full
+    def full(string)
       output = ["00:00", "23:59", 7, 7, 7, 7, 7, 7, 7]
       format_output(output)
     end
